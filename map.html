@@ -31,9 +31,9 @@
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex; /* 使用 flex 布局 */
-            flex-direction: column; /* 垂直排列 */
-            gap: 20px; /* 每个项目之间的间隙 */
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
         .section {
@@ -49,17 +49,10 @@
             transform: scale(1.05);
         }
 
-        .image-text-container {
-            display: flex; /* 使用 flex 布局 */
-            align-items: center; /* 垂直居中 */
-            justify-content: flex-start; /* 左对齐 */
-            margin-top: 10px; /* 增加按钮与图文之间的间隙 */
-        }
-
         .section img {
-            width: 150px; /* 调整图片最大宽度 */
-            height: 150px;
-            margin-left: 10px; /* 图片与按钮之间的间隔 */
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
         }
 
         .section button {
@@ -78,18 +71,26 @@
             transform: scale(1.05);
         }
 
-        .fixed-text {
+        .footer {
+            background-color: #66CDAA;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .text-area {
+            margin-top: 10px;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            background-color: #ffffff;
-            color: #333;
-            width: 300px; /* 固定文本框的宽度 */
-            height: 100%; /* 高度视需求而定 */
-            margin-left: 20px; /* 图片与文本框之间的间隔 */
-            text-align: left; /* 左对齐文本 */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 外框阴影 */
+            width: 80%;
+            height: 50px;
+            resize: none; /* 禁止调整大小 */
         }
+
     </style>
 </head>
 <body>
@@ -99,22 +100,14 @@
     
     <div class="content">
         <div class="section">
-            <div class="image-text-container">
-                <button onclick="openRentPage()">出租</button>
-                <img src="taxi.png" alt="出租">
-                <div class="fixed-text">
-                    这是关于出租服务的简要介绍。您可以在这里查看详细信息，以及相关的服务条款和条件。
-                </div>
-            </div>
+            <button onclick="openRentPage()">出租</button>
+            <img src="出租.png" alt="出租">
+            <textarea class="text-area" placeholder="在这里写一些与出租相关的内容"></textarea>
         </div>
         <div class="section">
-            <div class="image-text-container">
-                <button onclick="openShuttlePage()">班车</button>
-                <img src="bus.png" alt="班车">
-                <div class="fixed-text">
-                    这是关于班车服务的简要介绍。您可以在这里查看详细信息，以及相关的服务条款和条件。
-                </div>
-            </div>
+            <button onclick="openShuttlePage()">班车</button>
+            <img src="班车.png" alt="班车">
+            <textarea class="text-area" placeholder="在这里写一些与班车相关的内容"></textarea>
         </div>
     </div>
 
@@ -127,5 +120,9 @@
             // 可以在这里添加跳转到班车页面的逻辑
         }
     </script>
+
+    <div class="footer">
+        <p>© 2023 ZHY, All Rights Reserved.</p>
+    </div>
 </body>
 </html>
