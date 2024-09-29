@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>ZHY 新手指南</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #66CDAA;
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .section {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section:hover {
+            transform: scale(1.05);
+        }
+
+        .section img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+
+        .section button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            background-color: #66CDAA;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .section button:hover {
+            background-color: #76EEC6;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background-color: #66CDAA;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .text-area {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+            height: 50px;
+            resize: none; /* 禁止调整大小 */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ZHY 新手指南</h1>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <button onclick="openRentPage()">出租</button>
+            <img src="出租.png" alt="出租">
+            <textarea class="text-area" placeholder="在这里写一些与出租相关的内容"></textarea>
+        </div>
+        <div class="section">
+            <button onclick="openShuttlePage()">班车</button>
+            <img src="班车.png" alt="班车">
+            <textarea class="text-area" placeholder="在这里写一些与班车相关的内容"></textarea>
+        </div>
+    </div>
+
+    <script>
+        function openRentPage() {
+            // 可以在这里添加跳转到出租页面的逻辑
+        }
+
+        function openShuttlePage() {
+            // 可以在这里添加跳转到班车页面的逻辑
+        }
+    </script>
+
+    <div class="footer">
+        <p>© 2023 ZHY, All Rights Reserved.</p>
+    </div>
+</body>
+</html>
