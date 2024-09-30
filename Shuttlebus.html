@@ -31,9 +31,9 @@
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex; /* 使用 flex 布局 */
-            flex-direction: column; /* 垂直排列 */
-            gap: 20px; /* 每个项目之间的间隙 */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .section {
@@ -50,16 +50,16 @@
         }
 
         .image-text-container {
-            display: flex; /* 使用 flex 布局 */
-            align-items: center; /* 垂直居中 */
-            justify-content: flex-start; /* 左对齐 */
-            margin-top: 10px; /* 增加按钮与图文之间的间隙 */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 10px;
         }
 
         .section img {
-            width: 150px; /* 调整图片最大宽度 */
+            width: 150px;
             height: 150px;
-            margin-left: 10px; /* 图片与按钮之间的间隔 */
+            margin-left: 10px; 
         }
 
         .section button {
@@ -84,13 +84,37 @@
             border-radius: 5px;
             background-color: #ffffff;
             color: #333;
-            width: 300px; /* 固定文本框的宽度 */
-            height: 100%; /* 高度视需求而定 */
-            margin-left: 20px; /* 图片与文本框之间的间隔 */
-            text-align: left; /* 左对齐文本 */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 外框阴影 */
+            width: 600px;
+            height: 100%; 
+            margin-left: 20px; 
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #map {
+            width: 100%;
+            height: 500px;
+            display: none; /* 默认隐藏地图 */
+        }
+
+        .button-container {
+            margin-bottom: 10px;
+        }
+
+        /* 自定义样式 */
+        .info-window {
+            background-color: #90EE90; /* 浅绿色 */
+            border-radius: 10px; /* 圆角 */
+            padding: 8px; /* 内边距 */
+            color: #333; /* 文字颜色 */
+        }
+        .active {
+            font-weight: bold;
+            background-color: #66CDAA;
+            color: white;
         }
     </style>
+    <script src="https://api.map.baidu.com/api?v=3.0&ak=DOhnzKmHIKU7Ou3FQ1Zc6uq7XtQTrQ1s"></script>
 </head>
 <body>
     <div class="header">
@@ -103,22 +127,152 @@
                 <button onclick="openRentPage()">出租</button>
                 <img src="taxi.png" alt="出租">
                 <div class="fixed-text">
-                    这是关于出租服务的简要介绍。您可以在这里查看详细信息，以及相关的服务条款和条件。
+                    <p style="white-space: pre-line;">
+                     <b>1. 出租车价格</b></n>出租车的运价通常由当地政府规定，包括起步价、公里单价及等候费用等。
+                     有时也会根据不同时段（如高峰时段、节假日）制定不同的价格政策。
+                     <b>2. 打车方式</b></n>除传统的路边招手外，也可以在滴滴出行，高德地图，百度地图等网约车平台选择更灵活的网约车方式出行。 
+                     <b>3. 车辆要求</b></n>中卫没有私家网约车，均为外观为姜黄色的官方出租车，受到当地交通部门的定期检查和监督，以确保安全和服务质量。
+                      可通过举报热线反映出租车运营中的问题。
+                    </p>
                 </div>
             </div>
         </div>
+
         <div class="section">
+            <div class="button-container">
+                <button onclick="showRoute('A')"><b>ZHY 50</b></button>
+                <button onclick="showRoute('B')"><b>ZHY 51</b></button>
+                <button onclick="showRoute('C')"><b>ZHY 52</b></button>
+            </div>
             <div class="image-text-container">
                 <button onclick="openShuttlePage()">班车</button>
                 <img src="bus.png" alt="班车">
                 <div class="fixed-text">
-                    这是关于班车服务的简要介绍。您可以在这里查看详细信息，以及相关的服务条款和条件。
+                    <p style="white-space: pre;">
+                    <b>ZHY 50</b>
+                    <b>ZHY 51</b>
+                    <b>ZHY 52</b>
+                    </p>
                 </div>
             </div>
         </div>
+
+        <div id="map"></div> 
     </div>
 
     <script>
+        let map;
+        let markers = [];
+        let routes = {
+            A: [
+                { lng: 105.188549, lat: 37.521527 },//鼓楼西街
+                { lng: 105.202849, lat: 37.520893 },//明珠小区北门
+                { lng: 105.208336, lat: 37.521142 },//创业城北
+                { lng: 105.211021, lat: 37.521427 },//中卫七小
+                { lng: 105.211775, lat: 37.523843 },//东方家园西
+                { lng: 105.208547, lat: 37.524851 },//中杞丽都北
+                { lng: 105.20771,  lat: 37.524854 },
+                { lng: 105.208638, lat: 37.505501 },//供电局公交站台
+                { lng: 105.176322, lat: 37.514687 }//江元隆府东
+            ],
+            B: [
+                { lng: 105.200, lat: 37.520 },
+                { lng: 105.205, lat: 37.525 },
+                { lng: 105.210, lat: 37.530 },
+                { lng: 105.215, lat: 37.535 },
+                { lng: 105.220, lat: 37.540 }
+            ],
+            C: [
+                { lng: 105.220, lat: 37.520 },
+                { lng: 105.225, lat: 37.510 },
+                { lng: 105.230, lat: 37.500 },
+                { lng: 105.235, lat: 37.490 },
+                { lng: 105.240, lat: 37.480 }
+            ]
+        };
+
+        function initMap() {
+            map = new BMap.Map("map"); 
+            map.centerAndZoom(new BMap.Point(105.20952,37.519898), 16); // 初始化地图
+            map.setMinZoom(15);
+            showRoute('A'); // 默认显示路线 A
+            document.getElementById('map').style.display = 'block'; // 显示地图
+            map.setCurrentCity("中卫"); // 设置显示城市
+            map.enableScrollWheelZoom(true); // 启用滚轮缩放
+        }
+
+        function addRoute(route) {
+            clearMarkers();
+            const points = routes[route];
+            const fixedNotes = {
+            A: [
+                "起点: 鼓楼西街",
+                "明珠小区北门",
+                "创业城北",
+                "中卫七小",
+                "东方家园西",
+                "中杞丽都北",
+                "十字路口",
+                "供电局公交站台",
+                "江元隆府东"
+            ],
+            B: [
+                "班车站点 1",
+                "班车站点 2",
+                "班车站点 3",
+                "班车站点 4",
+                "班车站点 5"
+            ],
+            C: [
+                "班车站点 1",
+                "班车站点 2",
+                "班车站点 3",
+                "班车站点 4",
+                "班车站点 5"
+            ]
+        };
+            points.forEach((coord, index) => {
+                const marker = new BMap.Marker(new BMap.Point(coord.lng, coord.lat));
+                map.addOverlay(marker);
+                markers.push(marker);
+
+                // 添加鼠标悬停时显示的信息窗
+                const infoWindow = new BMap.InfoWindow(fixedNotes[route][index] || "标记点 " + (index + 1),// 设置固定的注释为固定文字
+                    
+                    {
+                        width: 40,  // 信息窗口宽度
+                        height: 10,  // 信息窗口高度
+                        title: "<b>站点</b>", // 信息窗口标题
+                        enableMessage: true // 启用信息窗口
+                    }
+                );
+                marker.addEventListener("mouseover", function() {
+                    map.openInfoWindow(infoWindow, marker.getPosition());
+                });
+            });
+
+            const polyline = new BMap.Polyline(points.map(coord => new BMap.Point(coord.lng, coord.lat)), { 
+                strokeColor: "green", // 路线颜色为绿色
+                strokeWeight: 5, 
+                strokeOpacity: 0.7 
+            });
+            map.addOverlay(polyline);
+            map.setViewport(points.map(coord => new BMap.Point(coord.lng, coord.lat))); // 调整视野
+        }
+
+        function clearMarkers() {
+            markers.forEach(marker => map.removeOverlay(marker));
+            markers = [];
+            map.clearOverlays();
+        }
+
+        function showRoute(route) {
+            clearMarkers();
+            addRoute(route);
+        }
+
+        window.onload = initMap;
+
         function openRentPage() {
             // 可以在这里添加跳转到出租页面的逻辑
         }
@@ -127,5 +281,6 @@
             // 可以在这里添加跳转到班车页面的逻辑
         }
     </script>
+
 </body>
 </html>
