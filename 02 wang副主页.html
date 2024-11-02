@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片排列示例</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* 防止滚动条出现 */
+        }
+
+        .background {
+            background-image: url('file:///C:/00工作文件/08工作/00FOC工作/02AI创新/03王欣/02沙坡头.png'); /* 替换为你的背景图片路径 */
+            background-size: cover; /* 背景图片覆盖整个区域 */
+            background-position: center; /* 背景水平垂直居中 */
+            height: 100vh; /* 高度为视口高度 */
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            position: relative; /* 使绝对定位的子元素相对于此元素 */
+        }
+
+        .container {
+            display: flex; /* 使用flexbox排列图片 */
+            justify-content: space-around; /* 水平分布 */
+            width: 90%; /* 设置容器宽度 */
+            flex-wrap: wrap; /* 允许换行 */
+            max-height: 80%; /* 限制容器的最大高度 */
+        }
+
+        .item {
+            display: flex; /* 使用flexbox排列标题、图片和指示器 */
+            flex-direction: column; /* 垂直方向排列 */
+            align-items: center; /* 水平居中 */
+            margin: 10px; /* 图片间距 */
+            max-width: 350px; /* 每个item的最大宽度 */
+        }
+
+        .item img {
+            width: 300px; /* 图片宽度 */
+            height: 300px; /* 图片高度 */
+            object-fit: cover; /* 保持图像比例，裁剪至填满 */
+            border-radius: 10px; /* 图片圆角 */
+            margin-bottom: 20px; /* 图片与文字间距 */
+        }
+
+        .title {
+            font-size: 35px; /* 字体大小 */
+            color: #fff; /* 字体颜色 */
+            text-align: center; /* 文字居中 */
+        }
+
+        .indicator {
+            padding: 5px 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            border-radius: 5px;
+            text-align: center;
+            animation: bounce 1s infinite; /* 跳动动画 */
+            cursor: pointer; /* 鼠标为手形 */
+        }
+
+        @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: scale(1);
+            }
+
+            40% {
+                transform: scale(1.1);
+            }
+
+            60% {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <div class="container">
+            <div class="item">
+                <div class="title">中卫历史及人文介绍</div>
+                <img src="file:///C:/00工作文件/08工作/00FOC工作/02AI创新/03王欣/01高庙.jpg" alt="中卫历史及人文介绍"> <!-- 替换为你的图片路径 -->
+                <div class="indicator" onclick="window.location.href='https://www.example1.com'">点击前往</div>
+            </div>
+            <div class="item">
+                <div class="title">中卫美食介绍</div>
+                <img src="file:///C:/00工作文件/08工作/00FOC工作/02AI创新/03王欣/03手抓羊肉图片.png" alt="中卫美食介绍"> <!-- 替换为你的图片路径 -->
+                <div class="indicator" onclick="window.location.href='https://www.example2.com'">点击前往</div>
+            </div>
+            <div class="item">
+                <div class="title">ZHY 美食鉴赏</div>
+                <img src="file:///C:/00工作文件/08工作/00FOC工作/02AI创新/03王欣/04食神.png" alt="ZHY 美食鉴赏"> <!-- 替换为你的图片路径 -->
+                <div class="indicator" onclick="window.location.href='https://www.example3.com'">点击前往</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
