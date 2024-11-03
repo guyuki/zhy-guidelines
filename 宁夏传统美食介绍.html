@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宁夏美食介绍</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #35424a;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: auto;
+        }
+
+        .search {
+            margin: 20px 0;
+        }
+
+        .search input {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #ccc;
+        }
+
+        .search button {
+            padding: 10px;
+            background: #35424a;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search button:hover {
+            background: #45a049;
+        }
+
+        .other-search {
+            padding: 10px;
+            background: #35424a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px; /* 添加左边距与搜索按钮分开 */
+        }
+
+        .other-search:hover {
+            background: #45a049;
+        }
+
+        .food-list {
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .food-item {
+            background: white;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* 新增隐藏搜索结果的样式 */
+        .hidden {
+            display: none;
+        }
+
+        .back-button {
+            padding: 10px;
+            background: #35424a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        /* 为返回按钮添加悬停效果 */
+        .back-button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>宁夏美食介绍</h1>
+    </header>
+    <div class="container">
+        <div class="search" id="searchSection">
+            <input type="text" id="searchInput" placeholder="搜索美食...">
+            <button id="searchButton">搜索</button>
+            <button class="other-search" id="otherSearchButton">其它搜索</button>
+        </div>
+        <button class="back-button hidden" id="backButton">返回</button>
+        <div class="food-list" id="foodList">
+            <!-- 美食列表将通过JavaScript填充 -->
+        </div>
+    </div>
+    <script>
+        const foodData = [
+            { name: '羊肉泡馍', description: '传统的宁夏小吃，味道鲜美，汤浓味香.' },
+            { name: '黄花菜', description: '宁夏的特产，营养丰富，口感独特.' },
+            { name: '手抓羊肉', description: '原汁原味的羊肉，令人口水直流.' },
+            { name: '牛肉面', description: '美味的手工面，搭配宁夏特制牛肉.' },
+            { name: '炒拉条', description: '美味的手工面，搭配宁夏特制牛肉.' },
+            { name: '羊杂碎', description: '美味的手工面，搭配宁夏特制牛肉.' },
+            { name: '猪杂碎', description: '美味的手工面，搭配宁夏特制牛肉.' },
+            { name: '蒿子面', description: '美味的手工面，搭配宁夏特制牛肉.' },
+            { name: '硒砂瓜', description: '美味的手工面，搭配宁夏特制牛肉.' },
+            { name: '鸽子鱼', description: '美味的手工面，搭配宁夏特制牛肉.' },
+            { name: '扁豆字面', description: '美味的手工面，搭配宁夏特制牛肉.' },
+            { name: '黄河鲤鱼', description: '美味的手工面，搭配宁夏特制牛肉.' },
+            { name: '沙葱', description: '美味的手工面，搭配宁夏特制牛肉.' },
+        ];
+
+        function displayFood(foods) {
+            const foodListElement = document.getElementById("foodList");
+            foodListElement.innerHTML = ''; // 清空现有列表
+            foods.forEach(food => {
+                const foodItem = document.createElement('div');
+                foodItem.classList.add('food-item');
+                foodItem.innerHTML = `<h3>${food.name}</h3><p>${food.description}</p>`;
+                foodListElement.appendChild(foodItem);
+            });
+        }
+
+        document.getElementById("searchButton").addEventListener("click", () => {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const filteredFood = foodData.filter(food => food.name.toLowerCase().includes(query));
+            displayFood(filteredFood);
+            document.getElementById("searchSection").classList.add('hidden'); // 隐藏搜索框
+            document.getElementById("backButton").classList.remove('hidden'); // 显示返回按钮
+        });
+
+        document.getElementById("backButton").addEventListener("click", () => {
+            document.getElementById("searchSection").classList.remove('hidden'); // 显示搜索框
+            document.getElementById("backButton").classList.add('hidden'); // 隐藏返回按钮
+            document.getElementById("searchInput").value = ''; // 清空搜索框
+            displayFood(foodData); // 显示所有食物
+        });
+
+        // 新增其他搜索按钮的点击事件
+        document.getElementById("otherSearchButton").addEventListener("click", () => {
+            // 跳转到其他页面，例如：
+            location.href = "other_search_page.html"; // 这里请替换为你的实际URL
+        });
+
+        // 初始加载所有食物
+        displayFood(foodData);
+    </script>
+</body>
+
+</html>
