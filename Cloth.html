@@ -4,180 +4,151 @@
     <meta charset="UTF-8">
     <title>ZHY 新手指南</title>
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            text-align: center; /* 使页面居中对齐 */
+            text-align: center;
         }
+
         .header {
-            background-color: #66CDAA; /* 浅绿色 */
+            background-color: #66CDAA;
             color: white;
             padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: relative;
+            z-index: 1;
         }
+
         .header h1 {
             margin: 0;
             font-size: 2.5em;
         }
-        .image-container {
-            display: flex; /* 使用flex布局 */
-            justify-content: space-between; /* 在两边放置图片 */
-            margin: 20px 0; /* 图片上下间隙 */
-        }
-        .image-container img {
-            width: 150px; /* 设置图片宽度，可以根据需要调整 */
-            height: auto; /* 高度自适应 */
-        }
+
         .content {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: grid; /* 使用Grid布局 */
-            grid-template-columns: repeat(2, 1fr); /* 两列 */
-            gap: 20px; /* 每个项目之间的间隙 */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
+
         .section {
-            background-color: #f0f0f0; /* 背景色 */
-            border-radius: 10px; /* 圆角 */
+            background-color: #f0f0f0;
+            border-radius: 10px;
             padding: 20px;
             text-align: center;
             transition: transform 0.3s;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
+
         .section:hover {
-            transform: scale(1.05); /* 悬停放大效果 */
+            transform: scale(1.05);
         }
+
+        .image-text-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+
         .section img {
-            max-width: 100%;
-            height: auto;
-            margin: 10px 0; /* 图片的外部间隙 */
+            width: 150px;
+            height: 150px;
+            margin-left: 10px; 
         }
+
         .section button {
             padding: 10px 20px;
             font-size: 1.2em;
             cursor: pointer;
             border: none;
-            background-color: #66CDAA; /* 浅绿色 */
+            background-color: #66CDAA;
             color: white;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
         }
+
         .section button:hover {
-            background-color: #76EEC6; /* 更浅的绿色 */
+            background-color: #76EEC6;
             transform: scale(1.05);
         }
-        .footer {
-            background-color: #66CDAA; /* 浅绿色 */
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        .weather {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+
+        .fixed-text {
             padding: 10px;
-            background-color: #76EEC6; /* 浅绿色 */
-            color: white;
-            border-radius: 50%; /* 圆形 */
-            cursor: pointer;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-        .weather:hover {
-            background-color: #66CDAA;
-        }
-        .weather-details {
-            display: none;
-            position: absolute;
-            top: 80px;
-            right: 20px;
-            padding: 10px;
-            background-color: #fff;
-            color: #333;
             border: 1px solid #ccc;
             border-radius: 5px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            color: #333;
+            width: 600px;
+            height: 100%; 
+            margin-left: 20px; 
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #map {
+            width: 100%;
+            height: 500px;
+            display: none; /* 默认隐藏地图 */
+        }
+
+        .button-container {
+            margin-bottom: 10px;
+        }
+
+        /* 自定义样式 */
+        .info-window {
+            background-color: #90EE90; /* 浅绿色 */
+            border-radius: 10px; /* 圆角 */
+            padding: 8px; /* 内边距 */
+            color: #333; /* 文字颜色 */
+        }
+        .active {
+            font-weight: bold;
+            background-color: #66CDAA;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>ZHY 新手指南</h1>
-        <div class="weather" onmouseover="toggleWeather(true)" onmouseout="toggleWeather(false)">
-            天气
-            <div class="weather-details" id="weather-details">
-                <p>加载中...</p>
+   <div class="content">
+    <div class="section">
+        <div class="image-text-container">
+            <div style="display: inline-block; background-color: green; color: white; padding: 10px; border-radius: 5px; cursor: pointer;" onclick="openRentPage()">
+                班车
+            </div>
+            <div class="fixed-text">
+                <p style="white-space: pre-line;">
+                    <b>1. 出租车价格</b></n>出租车的运价通常由当地政府规定，包括起步价、公里单价及等候费用等。
+                    有时也会根据不同时段（如高峰时段、节假日）制定不同的价格政策。
+                    <b>2. 打车方式</b></n>除传统的路边招手外，也可以在滴滴出行，高德地图，百度地图等网约车平台选择更灵活的网约车方式出行。 
+                    <b>3. 车辆要求</b></n>中卫没有私家网约车，均为外观为姜黄色的官方出租车，受到当地交通部门的定期检查和监督，以确保安全和服务质量。
+                    可通过举报热线反映出租车运营中的问题。
+                </p>
             </div>
         </div>
     </div>
 
-    <!-- ZHY 图片容器 -->
-    <div class="image-container">
-        <img src="ZHY-removed-background.png" alt="正常图片">
-        <img src="ZHY-removed-background.png" alt="反转图片" style="transform: scaleX(-1);"> <!-- 反转图片 -->
-    </div>
-
-    <div class="content">
-        <div class="section">
-            <button onclick="alert('在ZHY工作你穿好PPE了吗')">工作之前你穿好PPE了吗</button>
-            <img src="衣.png" alt="衣">
-        </div>
-        <div class="section">
-            <button onclick="alert('吃饭是人生大事')">吃饭是人生大事</button>
-            <img src="食.png" alt="食">
-        </div>
-        <div class="section">
-            <button onclick="alert('有个好的休息环境才能更好地工作哦')">好的休息环境才能更好地工作哦</button>
-            <img src="住.png" alt="住">
-        </div>
-        <div class="section">
-            <button onclick="alert('保证准时到达')">保证准时到达！</button>
-            <img src="行.png" alt="行">
+    <!-- 新增板块一 -->
+    <div class="section" style="margin-top: 20px;">
+        <h2 style="text-align: center;">板块一标题</h2>
+        <div style="padding: 10px; background-color: #f0f0f0; border-radius: 5px;">
+            <p>这里是板块一的内容。你可以根据需要在这里添加文本、图片或其他信息。</p>
         </div>
     </div>
 
-    <script>
-        async function getWeather() {
-            const apiKey = 'your_api_key'; // 在此处替换为你的API密钥
-            const city = 'Beijing'; // 你可以根据需要更改城市
-            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=zh_cn`;
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP 错误! 状态: ${response.status}`);
-                }
-                const data = await response.json();
-                return `今天天气：${data.weather[0].description}，${data.main.temp}°C`;
-            } catch (error) {
-                return `无法获取天气数据: ${error}`;
-            }
-        }
-
-        async function toggleWeather(show) {
-            const weatherDetails = document.getElementById('weather-details');
-            if (show) {
-                weatherDetails.innerHTML = '<p>加载中...</p>';
-                const weatherData = await getWeather();
-                weatherDetails.innerHTML = `<p>${weatherData}</p>`;
-                weatherDetails.style.display = 'block';
-            } else {
-                weatherDetails.style.display = 'none';
-            }
-        }
-    </script>
+    <!-- 新增板块二 -->
+    <div class="section" style="margin-top: 20px;">
+        <h2 style="text-align: center;">板块二标题</h2>
+        <div style="padding: 10px; background-color: #e0e0e0; border-radius: 5px;">
+            <p>这里是板块二的内容。你可以根据需要在这里添加文本、图片或其他信息。</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
