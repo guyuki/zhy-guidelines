@@ -75,6 +75,11 @@
             border-radius: 5px;
         }
 
+        .food-item a {
+            text-decoration: none; /* 去掉链接下划线 */
+            color: black; /* 设置链接文字为黑色 */
+        }
+
         /* 新增隐藏搜索结果的样式 */
         .hidden {
             display: none;
@@ -113,19 +118,19 @@
     </div>
     <script>
         const foodData = [
-            { name: '羊肉泡馍', description: '传统的宁夏小吃，味道鲜美，汤浓味香.' },
-            { name: '黄花菜', description: '宁夏的特产，营养丰富，口感独特.' },
-            { name: '手抓羊肉', description: '原汁原味的羊肉，令人口水直流.' },
-            { name: '牛肉面', description: '美味的手工面，搭配宁夏特制牛肉.' },
-            { name: '炒拉条', description: '美味的手工面，搭配宁夏特制牛肉.' },
-            { name: '羊杂碎', description: '美味的手工面，搭配宁夏特制牛肉.' },
-            { name: '猪杂碎', description: '美味的手工面，搭配宁夏特制牛肉.' },
-            { name: '蒿子面', description: '美味的手工面，搭配宁夏特制牛肉.' },
-            { name: '硒砂瓜', description: '美味的手工面，搭配宁夏特制牛肉.' },
-            { name: '鸽子鱼', description: '美味的手工面，搭配宁夏特制牛肉.' },
-            { name: '扁豆字面', description: '美味的手工面，搭配宁夏特制牛肉.' },
-            { name: '黄河鲤鱼', description: '美味的手工面，搭配宁夏特制牛肉.' },
-            { name: '沙葱', description: '美味的手工面，搭配宁夏特制牛肉.' },
+            { name: '羊肉泡馍', description: '传统的宁夏小吃，味道鲜美，汤浓味香.', link: 'yangroupaomo.html' },
+            { name: '黄花菜', description: '宁夏的特产，营养丰富，口感独特.', link: 'huanghuacai.html' },
+            { name: '手抓羊肉', description: '原汁原味的羊肉，令人口水直流.', link: 'shouzhuyangrou.html' },
+            { name: '牛肉面', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'niuroumianshi.html' },
+            { name: '炒拉条', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'chaolatiao.html' },
+            { name: '羊杂碎', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'yangzasui.html' },
+            { name: '猪杂碎', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'zhuzasui.html' },
+            { name: '蒿子面', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'haozi.html' },
+            { name: '硒砂瓜', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'xishagua.html' },
+            { name: '鸽子鱼', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'gezifish.html' },
+            { name: '扁豆字面', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'biandouzhimian.html' },
+            { name: '黄河鲤鱼', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'huangheliryu.html' },
+            { name: '沙葱', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'shacong.html' },
         ];
 
         function displayFood(foods) {
@@ -134,7 +139,11 @@
             foods.forEach(food => {
                 const foodItem = document.createElement('div');
                 foodItem.classList.add('food-item');
-                foodItem.innerHTML = `<h3>${food.name}</h3><p>${food.description}</p>`;
+                foodItem.innerHTML = `
+                    <a href="${food.link}">
+                        <h3>${food.name}</h3>
+                        <p>${food.description}</p>
+                    </a>`;
                 foodListElement.appendChild(foodItem);
             });
         }
@@ -157,7 +166,7 @@
         // 新增其他搜索按钮的点击事件
         document.getElementById("otherSearchButton").addEventListener("click", () => {
             // 跳转到其他页面，例如：
-            location.href = "中卫美食搜索.html"; // 这里请替换为你的实际URL
+            location.href = "other_search_page.html"; // 这里请替换为你的实际URL
         });
 
         // 初始加载所有食物
