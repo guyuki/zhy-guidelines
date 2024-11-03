@@ -10,45 +10,24 @@
             margin: 0 auto;
             text-align: center;
         }
-
         #map {
             width: 100%;
             height: 400px;
             margin-top: 20px;
         }
-
         .recommendation-list {
             margin-top: 20px;
             text-align: left;
         }
-
         .restaurant-item {
             border: 1px solid #ccc;
             padding: 10px;
             margin: 5px 0;
             border-radius: 5px;
             cursor: pointer; /* 鼠标指针指向项 */
-            position: relative; /* 为悬停文本定位 */
         }
-
         .restaurant-item:hover {
             background-color: #f0f0f0; /* 鼠标悬停效果 */
-        }
-
-        /* 悬停提示 */
-        .tooltip {
-            display: none;
-            position: absolute; /* 绝对定位在 restaurant-item 上 */
-            background-color: #333;
-            color: #fff;
-            padding: 5px;
-            border-radius: 5px;
-            font-size: 14px;
-            z-index: 1000; /* 确保提示在前面 */
-        }
-
-        .restaurant-item:hover .tooltip {
-            display: block; /* 悬停时显示提示 */
         }
     </style>
     <script src="https://api.map.baidu.com/api?v=2.0&ak=OJBGt2yi4vONc2bkAa82RrKlYE30ygMg"></script> <!-- 替换为您的百度地图API密钥 -->
@@ -92,7 +71,7 @@
                             const marker = new BMap.Marker(poi.point); // 创建标记
                             markers.push(marker);
                             map.addOverlay(marker); // 添加标记到地图
-
+                            
                             const infoWindow = new BMap.InfoWindow(`<h4>${poi.title}</h4><p>${poi.address}</p>`);
                             marker.addEventListener("click", function() {
                                 this.openInfoWindow(infoWindow);
@@ -101,8 +80,7 @@
                             // 添加到推荐列表
                             const restaurantItem = document.createElement('div');
                             restaurantItem.classList.add('restaurant-item');
-                            restaurantItem.innerHTML = `<strong>${i + 1}. ${poi.title}</strong><br>地址: ${poi.address}
-                                                        <span class="tooltip">想吃我，就点击前往哦</span>`; // 添加悬停提示
+                            restaurantItem.innerHTML = `<strong>${i + 1}. ${poi.title}</strong><br>地址: ${poi.address}`;
                             
                             // 点击列表项直接跳转到该餐厅的链接
                             restaurantItem.onclick = function() {
@@ -140,7 +118,7 @@
     <label for="food-type">输入您想吃的食物:</label>
     <input type="text" id="food-type" placeholder="例如：牛肉面"/>
 
-    <button id="recommend-btn">获取推荐</buttonbutton>
+    <button id="recommend-btn">获取推荐</button>
 
     <div class="recommendation-list" id="recommendation"></div>  <!-- 添加推荐餐厅的列表区域 -->
 
