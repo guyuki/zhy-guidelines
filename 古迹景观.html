@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>民俗风情</title>
+    <title>古迹景观</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,16 +48,16 @@
             background: #45a049;
         }
 
-        .other-search {
+        .back-button {
             padding: 10px;
             background: #35424a;
             color: white;
             border: none;
             cursor: pointer;
-            margin-left: 10px; /* 添加左边距与搜索按钮分开 */
+            margin: 20px 0;
         }
 
-        .other-search:hover {
+        .back-button:hover {
             background: #45a049;
         }
 
@@ -85,25 +85,12 @@
             display: none;
         }
 
-        .back-button {
-            padding: 10px;
-            background: #35424a;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin: 20px 0;
-        }
-
-        /* 为返回按钮添加悬停效果 */
-        .back-button:hover {
-            background: #45a049;
-        }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>宁夏美食介绍</h1>
+        <h1>古迹景观</h1>
     </header>
     <div class="container">
         <div class="search" id="searchSection">
@@ -144,7 +131,6 @@
             { name: '民俗风情25-乡俗', description: '待定.', link: 'https://mp.weixin.qq.com/s/DzYAnTzKaD6QxcpOVz8kqg' },
             { name: '民俗风情26-过满月', description: '待定.', link: 'https://mp.weixin.qq.com/s/OqOv0J90jdoZo-6kAMgdbw' },
             { name: '民俗风情27-过寿', description: '待定.', link: 'https://mp.weixin.qq.com/s/uc_AynnnMJZRB5REnXQS0Q' }
-          
         ];
 
         function displayFood(foods) {
@@ -175,12 +161,6 @@
             document.getElementById("backButton").classList.add('hidden'); // 隐藏返回按钮
             document.getElementById("searchInput").value = ''; // 清空搜索框
             displayFood(foodData); // 显示所有食物
-        });
-
-        // 新增其他搜索按钮的点击事件
-        document.getElementById("otherSearchButton").addEventListener("click", () => {
-            // 跳转到其他页面，例如：
-            location.href = "中卫美食搜索.html"; // 这里请替换为你的实际URL
         });
 
         // 初始加载所有食物
