@@ -4,62 +4,58 @@
     <meta charset="UTF-8">
     <title>ZHY 新手指南</title>
     <style>
-         body {
+        body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            text-align: center;
+            text-align: center; /* 使页面居中对齐 */
         }
 
         .header {
-            background-color: #66CDAA;
+            background-color: #66CDAA; /* 浅绿色 */
             color: white;
-            padding: 20px 0;
-            position: relative;
-            z-index: 1;
+            padding: 20px 0; /* 调整上下内边距 */
+            position: relative; /* 使内容有相对定位 */
+            z-index: 1; /* 使标题在图片之上 */
         }
 
         .header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2.5em; /* 调整字体大小 */
         }
-
+        .header h2 {
+            margin: 0;
+            font-size: 1.5em; /* 调整字体大小 */
+        }
         .content {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            display: flex; /* 使用 Flex 布局 */
+            flex-direction: column; /* 垂直方向布局 */
+            gap: 20px; /* 每个项目之间的间隙 */
         }
 
         .section {
-            background-color: #f0f0f0;
-            border-radius: 10px;
+            background-color: #f0f0f0; /* 背景色 */
+            border-radius: 10px; /* 圆角 */
             padding: 20px;
             text-align: center;
             transition: transform 0.3s;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
         }
 
         .section:hover {
-            transform: scale(1.05);
-        }
-
-        .image-text-container {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            margin-top: 10px;
+            transform: scale(1.05); /* 悬停放大效果 */
         }
 
         .section img {
-            width: 150px;
-            height: 150px;
-            margin-left: 10px; 
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0; /* 图片的外部间隙 */
         }
 
         .section button {
@@ -67,18 +63,55 @@
             font-size: 1.2em;
             cursor: pointer;
             border: none;
-            background-color: #66CDAA;
+            background-color: #66CDAA; /* 浅绿色 */
             color: white;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
         }
 
         .section button:hover {
-            background-color: #76EEC6;
+            background-color: #76EEC6; /* 更浅的绿色 */
             transform: scale(1.05);
         }
 
-        .fixed-text {
+        .footer {
+            background-color: #66CDAA; /* 浅绿色 */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .weather {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #76EEC6; /* 浅绿色 */
+            color: white;
+            border-radius: 50%; /* 圆形 */
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .weather:hover {
+            background-color: #66CDAA; /* 浅绿色 */
+        }
+
+        .image-text-container {
+            display: flex; /* 使用 Flexbox 布局 */
+            align-items: flex-start; /* 垂直顶部对齐 */
+            margin: 10px 0; /* 上下边距 */
+        }
+
+        .ppe-text {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -90,49 +123,49 @@
             text-align: left;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
-        #map {
-            width: 100%;
-            height: 500px;
-            display: none; /* 默认隐藏地图 */
-        }
-
-        .button-container {
-            margin-bottom: 10px;
-        }
-
-        /* 自定义样式 */
-        .info-window {
-            background-color: #90EE90; /* 浅绿色 */
-            border-radius: 10px; /* 圆角 */
-            padding: 8px; /* 内边距 */
-            color: #333; /* 文字颜色 */
-        }
-        .active {
-            font-weight: bold;
-            background-color: #66CDAA;
-            color: white;
+        img {
+            max-width: 150px; /* 设置图片最大宽度 */
+            height: auto; /* 保持纵横比 */
+            margin: 0; /* 去掉图片外部间距 */
         }
     </style>
 </head>
 <body>
-   <div class="content">
-
-    <!-- 新增板块一 -->
-    <div class="section" style="margin-top: 20px;">
-        <h2 style="text-align: center;">板块一标题</h2>
-        <div style="padding: 10px; background-color: #f0f0f0; border-radius: 5px;">
-            <p>这里是板块一的内容。你可以根据需要在这里添加文本、图片或其他信息。</p>
+    <div class="header">
+        <h1>ZHY 新手指南</h1>
+    </div>
+    
+    <div class="image-text-container">
+    <div class="content">
+            <h2>什么是PPE？        <img src="PPE.png" alt="穿PPE的人"></h2>
+            <div class="ppe-text">
+                PPE 是 "Personal Protective Equipment" 的缩写，意指个人防护装备。它是指在工作或特定环境中，保护工作人员或工作人员免受伤害和疾病的装备。PPE包括以下内容：
+                <ul>
+                    <li><b>头部保护：</b>安全帽用于防止头部受到坠落物的伤害。</li>
+                    <li><b>眼部保护：</b>安全眼镜或护目镜，防止化学品、飞溅物、灰尘等对眼睛的伤害。</li>
+                    <li><b>听力保护：</b>耳塞或耳罩，减少噪音对听力的影响。</li>
+                    <li><b>手部保护：</b>手套，防止化学品、擦伤、高温等对手部的伤害。</li>
+                    <li><b>身体保护：</b>防护服，保护身体免受化学品、电击、火焰等的影响。</li>
+                    <li><b>脚部保护：</b>安全鞋，防止重物压伤和滑倒。</li>
+                </ul>
+                使用 PPE 是保护自己的重要步骤，也应结合其他安全措施，如培训和安全程序，以确保整体安全。
+            </div>
         </div>
     </div>
-
-    <!-- 新增板块二 -->
-    <div class="section" style="margin-top: 20px;">
-        <h2 style="text-align: center;">板块二标题</h2>
-        <div style="padding: 10px; background-color: #e0e0e0; border-radius: 5px;">
-            <p>这里是板块二的内容。你可以根据需要在这里添加文本、图片或其他信息。</p>
+    <div class="image-text-container">
+        <div class="content">
+            <h2>如何申请PPE?        <img src="PPE.png" alt="穿PPE的人"></h2>
+            <div class="ppe-text">
+                请联系各站点oncall领取使用
+                <ul>
+                    <li><b>登记领取？</b>
+                        在该<a href="https://nwcd.quip-amazon.com/s1XsALeGvVke/ZHY-DCEO-PPE-Tracking#IZE9CAssvO4" target="_blank">quip</a>中更新个人领取清况~</li>
+                        也可在该quip中查看PPE库存情况
+                    <li><b>库存不够？</b>
+                        参考该<a href="https://midway-auth.aws-border.cn/login?next=%2FSSO%2Fredirect%3Fredirect_uri%3Dhttps%253A%252F%252Fissues.cn-northwest-1.amazonaws.cn%253A443%252Fissues%252FZ50700266%26client_id%3Dhttps%253A%252F%252Fissues.cn-northwest-1.amazonaws.cn%253A443%26scope%3Dopenid%26sentry_handler_version%3DMidwayNginxModule-1.7-1%26response_type%3Did_token%26nonce%3D95b32d36faebc8411e732a9a92804620a4f1f083d5a01cc6845e9709824a8833&require_digital_identity=false" target="_blank">issue</a>提交采购需求~</li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
