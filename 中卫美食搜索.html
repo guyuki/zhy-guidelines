@@ -24,6 +24,10 @@
             padding: 10px;
             margin: 5px 0;
             border-radius: 5px;
+            cursor: pointer; /* 鼠标指针指向项 */
+        }
+        .restaurant-item:hover {
+            background-color: #f0f0f0; /* 鼠标悬停效果 */
         }
     </style>
     <script src="https://api.map.baidu.com/api?v=2.0&ak=OJBGt2yi4vONc2bkAa82RrKlYE30ygMg"></script> <!-- 替换为您的百度地图API密钥 -->
@@ -50,7 +54,7 @@
                 } else {
                     alert("未能获取到该位置的坐标，请确认位置名称是否正确！");
                 }
-            }, "北京市"); // 该参数可以根据需要调整
+            });
         }
 
         function searchRestaurants(lat, lng, foodType) {
@@ -72,11 +76,17 @@
                             marker.addEventListener("click", function() {
                                 this.openInfoWindow(infoWindow);
                             });
-                            
+
                             // 添加到推荐列表
                             const restaurantItem = document.createElement('div');
                             restaurantItem.classList.add('restaurant-item');
                             restaurantItem.innerHTML = `<strong>${i + 1}. ${poi.title}</strong><br>地址: ${poi.address}`;
+                            
+                            // 点击列表项直接跳转到该餐厅的链接
+                            restaurantItem.onclick = function() {
+                                window.open(poi.url || "#"); // 假设poi包含url，若无则可以链接到 "#"
+                            };
+                            
                             document.getElementById('recommendation').appendChild(restaurantItem);
                         }
                     } else {
