@@ -15,6 +15,16 @@
             height: 400px;
             margin-top: 20px;
         }
+        .recommendation-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .restaurant-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
     </style>
     <script src="https://api.map.baidu.com/api?v=2.0&ak=OJBGt2yi4vONc2bkAa82RrKlYE30ygMg"></script> <!-- 替换为您的百度地图API密钥 -->
     <script>
@@ -45,21 +55,29 @@
 
         function searchRestaurants(lat, lng, foodType) {
             clearMarkers();
+            document.getElementById('recommendation').innerHTML = ''; // 清空推荐列表
 
             const local = new BMap.LocalSearch(map, {
                 renderOptions: { map: map, autoViewport: true },
                 onSearchComplete: function(results) {
                     if (local.getStatus() === BMAP_STATUS_SUCCESS) {
-                        results.getCurrentNumPois(); // 获取结果数量
-                        for (let i = 0; i < results.getCurrentNumPois(); i++) {
+                        const count = results.getCurrentNumPois(); // 获取结果数量
+                        for (let i = 0; i < count; i++) {
                             const poi = results.getPoi(i);
                             const marker = new BMap.Marker(poi.point); // 创建标记
                             markers.push(marker);
                             map.addOverlay(marker); // 添加标记到地图
+                            
                             const infoWindow = new BMap.InfoWindow(`<h4>${poi.title}</h4><p>${poi.address}</p>`);
                             marker.addEventListener("click", function() {
                                 this.openInfoWindow(infoWindow);
                             });
+                            
+                            // 添加到推荐列表
+                            const restaurantItem = document.createElement('div');
+                            restaurantItem.classList.add('restaurant-item');
+                            restaurantItem.innerHTML = `<strong>${i + 1}. ${poi.title}</strong><br>地址: ${poi.address}`;
+                            document.getElementById('recommendation').appendChild(restaurantItem);
                         }
                     } else {
                         alert("未找到相关餐厅");
@@ -91,6 +109,8 @@
     <input type="text" id="food-type" placeholder="例如：牛肉面"/>
 
     <button id="recommend-btn">获取推荐</button>
+
+    <div class="recommendation-list" id="recommendation"></div>  <!-- 添加推荐餐厅的列表区域 -->
 
     <div id="map"></div>
 </div>
