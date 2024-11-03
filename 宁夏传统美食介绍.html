@@ -126,8 +126,7 @@
             { name: '炒拉条', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'chaolatiao.html' },
             { name: '羊杂碎', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'yangzasui.html' },
             { name: '猪杂碎', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'zhuzasui.html' },
-            { name: '蒿子面', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'http://mp.weixin.qq.com/s/RoxfKJN80gqrza_LQKMbuA' },
-            { name: '硒砂瓜', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'xishagua.htmlxfKJN80gqrza_LQKMbuA' },
+            { name: '硒砂瓜', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'xishagua.html' },
             { name: '鸽子鱼', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'gezifish.html' },
             { name: '扁豆字面', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'biandouzhimian.html' },
             { name: '黄河鲤鱼', description: '美味的手工面，搭配宁夏特制牛肉.', link: 'huangheliryu.html' },
@@ -141,7 +140,7 @@
                 const foodItem = document.createElement('div');
                 foodItem.classList.add('food-item');
                 foodItem.innerHTML = `
-                    <a href="${food.link}">
+                    <a href="${food.link}" target="_blank">
                         <h3>${food.name}</h3>
                         <p>${food.description}</p>
                     </a>`;
