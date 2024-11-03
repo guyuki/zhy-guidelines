@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中卫历史及人文介绍</title>
+    <title>民俗风情</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -103,7 +103,7 @@
 
 <body>
     <header>
-        <h1>中卫历史及人文介绍</h1>
+        <h1>宁夏美食介绍</h1>
     </header>
     <div class="container">
         <div class="search" id="searchSection">
@@ -117,13 +117,34 @@
     </div>
     <script>
         const foodData = [
-            { name: '民俗风情', description: '待定.', link: '民俗风情.html' },
-            { name: '名胜古迹', description: '宁夏的特产，营养丰富，口感独特.', link: '名胜古迹.html' },
-            { name: '中卫概览', description: '原汁原味的羊肉，令人口水直流.', link: '中卫概览.html' },
-            { name: '古迹景观', description: '美味的手工面，搭配宁夏特制牛肉.', link: '古迹景观.html' },
-            { name: '人物春秋', description: '美味的手工面，搭配宁夏特制牛肉.', link: '人物春秋.html' },
-            { name: '历史源流', description: '美味的手工面，搭配宁夏特制牛肉.', link: '历史源流.html' },
- 
+            { name: '民俗风情1-春节', description: '待定.', link: 'https://mp.weixin.qq.com/s/jVzz_q-U3h1LlY5usNl4kQ' },
+            { name: '民俗风情2-饦烙子', description: '待定.', link: 'https://mp.weixin.qq.com/s/lfBaxkUWQodFYESYrrrQwg' },
+            { name: '民俗风情3-祭灶神', description: '待定.', link: 'https://mp.weixin.qq.com/s/PY861jhO4K5lKQsNCqEMgQ' },
+            { name: '民俗风情4-除夕', description: '待定.', link: 'https://mp.weixin.qq.com/s/xf62w2lp9u8YU8U52gYKQw' },
+            { name: '民俗风情5-年初一', description: '待定.', link: 'https://mp.weixin.qq.com/s/oVwfcd3Gx8ir7OxpUiY02Q' },
+            { name: '民俗风情6-元宵节', description: '待定.', link: 'https://mp.weixin.qq.com/s/rciPkm-G2xGkjhuJ3tXNLQ' },
+            { name: '民俗风情7-燎疳', description: '待定.', link: 'https://mp.weixin.qq.com/s/AY07mWyjXmK5mGzQ1hnY4Q' },
+            { name: '民俗风情8-婚俗', description: '待定.', link: 'https://mp.weixin.qq.com/s/CuUJ5gYxGblIi6iqsc3kCA' },
+            { name: '民俗风情9-媒婆', description: '待定.', link: 'https://mp.weixin.qq.com/s/MyJ-CPv3oDV_-gZfZMyh5A' },
+            { name: '民俗风情10-相亲', description: '待定.', link: 'https://mp.weixin.qq.com/s/St8QsKSZ5aUlTLe3ayPHsw' },
+            { name: '民俗风情11-看家', description: '待定.', link: 'https://mp.weixin.qq.com/s/2od8vXuIQY1a3ZYvjJR_qA' },
+            { name: '民俗风情12-订婚', description: '待定.', link: 'https://mp.weixin.qq.com/s/r7OQw951f5NJftLX9TTslw' },
+            { name: '民俗风情13-娶亲1', description: '待定.', link: 'https://mp.weixin.qq.com/s/aQovSXFXyEyJ9ubXBfkwgA' },
+            { name: '民俗风情14-娶亲2', description: '待定.', link: 'https://mp.weixin.qq.com/s/V61mHfC09XbhSHbVMhrPxg' },
+            { name: '民俗风情15-站娘家', description: '待定.', link: 'https://mp.weixin.qq.com/s/gsmOC0xM14__D1-QO9sSPw' },
+            { name: '民俗风情16-丧俗', description: '待定.', link: 'https://mp.weixin.qq.com/s/exFlSzlvMHu_QOG0irDTYg' },
+            { name: '民俗风情17-停丧', description: '待定.', link: 'https://mp.weixin.qq.com/s/zSqoeBbI30rRvXCJK4kyBw' },
+            { name: '民俗风情18-出殡', description: '待定.', link: 'https://mp.weixin.qq.com/s/SiY3I5JFn8n7iGHgZ1jfVg' },
+            { name: '民俗风情19-节俗', description: '待定.', link: 'https://mp.weixin.qq.com/s/nZr7i_9vh9b3k_8lGQlpaQ' },
+            { name: '民俗风情20-三月三', description: '待定.', link: 'https://mp.weixin.qq.com/s/HbKc2QSd0YRBf2XQBrka3w' },
+            { name: '民俗风情21-清明节', description: '待定.', link: 'https://mp.weixin.qq.com/s/LaJXRZrk4PmDFnPXhhbfTg' },
+            { name: '民俗风情22-七夕节', description: '待定.', link: 'https://mp.weixin.qq.com/s/8LWASUWeyJ74TpwWx_vkjw' },
+            { name: '民俗风情23-中秋节', description: '待定.', link: 'https://mp.weixin.qq.com/s/84xd80SVemtFZV0JE5wlOg' },
+            { name: '民俗风情24-重阳节', description: '待定.', link: 'https://mp.weixin.qq.com/s/1J-pSPNB9hlxJAJ3WIwf_w' },
+            { name: '民俗风情25-乡俗', description: '待定.', link: 'https://mp.weixin.qq.com/s/DzYAnTzKaD6QxcpOVz8kqg' },
+            { name: '民俗风情26-过满月', description: '待定.', link: 'https://mp.weixin.qq.com/s/OqOv0J90jdoZo-6kAMgdbw' },
+            { name: '民俗风情27-过寿', description: '待定.', link: 'https://mp.weixin.qq.com/s/uc_AynnnMJZRB5REnXQS0Q' }
+          
         ];
 
         function displayFood(foods) {
@@ -133,7 +154,7 @@
                 const foodItem = document.createElement('div');
                 foodItem.classList.add('food-item');
                 foodItem.innerHTML = `
-                    <a href="${food.link}">
+                    <a href="${food.link}" target="_blank">
                         <h3>${food.name}</h3>
                         <p>${food.description}</p>
                     </a>`;
@@ -159,7 +180,7 @@
         // 新增其他搜索按钮的点击事件
         document.getElementById("otherSearchButton").addEventListener("click", () => {
             // 跳转到其他页面，例如：
-            location.href = "other_search_page.html"; // 这里请替换为你的实际URL
+            location.href = "中卫美食搜索.html"; // 这里请替换为你的实际URL
         });
 
         // 初始加载所有食物
