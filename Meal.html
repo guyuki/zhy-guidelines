@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全屏背景图片</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* 防止滚动条出现 */
+        }
+        .background {
+            background-image: url('00wang主页图片.png'); /* 更新为原始链接 */
+            background-size: cover; /* 使背景图片覆盖整个区域 */
+            background-position: center center; /* 垂直水平居中 */
+            background-repeat: no-repeat; /* 不重复 */
+            height: 100vh; /* 高度为视口高度 */
+            width: 100%; /* 宽度为100% */
+            position: relative; /* 使绝对定位的子元素相对于此元素 */
+        }
+        .title {
+            position: absolute;
+            top: 68%; /* 向上移动至适当位置 */
+            left: 50%; /* 水平居中 */
+            transform: translate(-50%, -50%); /* 使元素中心对齐 */
+            font-size: 48px; /* 字体大小放大 */
+            color: gold; /* 金黄色字体 */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
+            font-family: 'Arial', sans-serif; /* 字体 */
+            animation: bounce 1s infinite; /* 跳动动画 */
+            text-align: center; /* 文本居中 */
+        }
+        .indicator {
+            position: absolute;
+            top: 79%; /* 垂直位置 */
+            left: 50%; /* 水平居中 */
+            transform: translate(-50%, -50%); /* 使元素中心对齐 */
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+            color: #000;
+            border-radius: 5px;
+            text-align: center;
+            animation: bounce 1s infinite; /* 跳动动画 */
+            cursor: pointer; /* 鼠标为手形 */
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            40% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            60% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="title">美食城探险</div> <!-- 美食城探险字样 -->
+        <div class="indicator" onclick="window.location.href='02 wang副主页.html'">点击前往</div> <!-- 替换链接 -->
+    </div>
+</body>
+</html>
