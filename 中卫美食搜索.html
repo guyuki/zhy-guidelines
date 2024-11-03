@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宁夏中卫美食推荐</title>
     <style>
+        /* 基本样式 */
         .container {
             width: 80%;
             margin: 0 auto;
@@ -15,11 +16,28 @@
             height: 400px;
             margin-top: 20px;
         }
+        .recommendation-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .restaurant-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
     </style>
-    <script src="https://api.map.baidu.com/api?v=2.0&ak=OJBGt2yi4vONc2bkAa82RrKlYE30ygMg"></script> <!-- 替换为您的百度地图API密钥 -->
+    <script src="https://api.map.baidu.com/api/api?v=2.0&ak=YOUR_BAIDU_MAP_API_KEY"></script> <!-- 替换为您的百度地图API密钥 -->
     <script>
         let map;
         let markers = []; // 存储标记
+        const foodData = [
+            { name: '牛肉面', description: '好吃的牛肉面，味道鲜美', lat: 37.5090, lng: 105.1930, rating: 4.5, price: "25元" },
+            { name: '羊肉串', description: '美味的羊肉串，香辣可口', lat: 37.5110, lng: 105.1810, rating: 4.7, price: "30元" },
+            { name: '凉皮', description: '爽口的凉皮，适合夏天', lat: 37.5100, lng: 105.1820, rating: 4.2, price: "15元" },
+            { name: '手抓羊肉', description: '正宗手抓羊肉，肉质鲜嫩', lat: 37.5120, lng: 105.1900, rating: 4.6, price: "50元" },
+            { name: '炸糕', description: '酥脆可口的炸糕', lat: 37.5110, lng: 105.1810, rating: 4.1, price: "10元" }
+        ];
 
         function initMap() {
             map = new BMap.Map("map");
@@ -28,45 +46,38 @@
             map.enableScrollWheelZoom(true);
         }
 
-        function geocodeAndSearch() {
-            const location = document.getElementById('location').value; // 获取用户输入位置
-            const foodType = document.getElementById('food-type').value; // 获取用户输入食物类型
+        function showRecommendation() {
+            const location = document.getElementById('location').value;
+            const foodType = document.getElementById('food-type').value;
 
-            // 地理编码
-            const myGeo = new BMap.Geocoder();
-            myGeo.getPoint(location, function(point) {
-                if (point) {
-                    searchRestaurants(point.lat, point.lng, foodType);
-                } else {
-                    alert("未能获取到该位置的坐标，请确认位置名称是否正确！");
-                }
-            }, "北京市"); // 该参数可以根据需要调整
-        }
+            // 这里模拟为固定数据，可以根据实际需求逻辑进行修改和扩展
+            const filteredData = foodData.filter(food => food.name.includes(foodType));
 
-        function searchRestaurants(lat, lng, foodType) {
-            clearMarkers();
+            clearMarkers(); // 清除旧标记
+            document.getElementById('recommendation').innerHTML = ''; // 清空推荐列表
 
-            const local = new BMap.LocalSearch(map, {
-                renderOptions: { map: map, autoViewport: true },
-                onSearchComplete: function(results) {
-                    if (local.getStatus() === BMAP_STATUS_SUCCESS) {
-                        results.getCurrentNumPois(); // 获取结果数量
-                        for (let i = 0; i < results.getCurrentNumPois(); i++) {
-                            const poi = results.getPoi(i);
-                            const marker = new BMap.Marker(poi.point); // 创建标记
-                            markers.push(marker);
-                            map.addOverlay(marker); // 添加标记到地图
-                            const infoWindow = new BMap.InfoWindow(`<h4>${poi.title}</h4><p>${poi.address}</p>`);
-                            marker.addEventListener("click", function() {
-                                this.openInfoWindow(infoWindow);
-                            });
-                        }
-                    } else {
-                        alert("未找到相关餐厅");
-                    }
-                }
-            });
-            local.searchNearby(foodType, new BMap.Point(lng, lat), 1000); // 搜索附近餐厅
+            if (filteredData.length > 0) {
+                filteredData.forEach((place, index) => {
+                    const point = new BMap.Point(place.lng, place.lat);
+                    const marker = new BMap.Marker(point);
+                    map.addOverlay(marker);
+                    const infoWindow = new BMap.InfoWindow(`<h4>${place.name}</h4><p>描述: ${place.description}<br>评分: ${place.rating}<br>参考价: ${place.price}</p>`);
+                    marker.addEventListener("click", function() {
+                        this.openInfoWindow(infoWindow);
+                    });
+                    markers.push(marker); // 存储标记
+
+                    // 添加餐厅信息到推荐列表
+                    const restaurantItem = document.createElement('div');
+                    restaurantItem.classList.add('restaurant-item');
+                    restaurantItem.innerHTML = `<strong>${index + 1}. ${place.name}</strong><br>评分: ${place.rating}<br>参考价: ${place.price}<br>描述: ${place.description}`;
+                    document.getElementById('recommendation').appendChild(restaurantItem);
+                });
+                // 调整地图视野以适应所有标记
+                map.setViewport(filteredData.map(food => new BMap.Point(food.lng, food.lat)));
+            } else {
+                alert("没有找到相关餐厅");
+            }
         }
 
         function clearMarkers() {
@@ -76,11 +87,12 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             initMap();
-            document.getElementById('recommend-btn').onclick = geocodeAndSearch;
+            document.getElementById('recommend-btn').onclick = showRecommendation;
         });
     </script>
 </head>
 <body>
+
 <div class="container">
     <h1>宁夏中卫美食推荐</h1>
 
@@ -92,7 +104,10 @@
 
     <button id="recommend-btn">获取推荐</button>
 
+    <div class="recommendation-list" id="recommendation"></div>  
+
     <div id="map"></div>
 </div>
+
 </body>
 </html>
